@@ -4,10 +4,10 @@
 # ---------------------------------------------------------------
 
 # Site
-title: Blogs
-subtitle:
-description:
-author: cxyu
+title: leafcxy
+subtitle: cxyu's Blog
+description: Too simple, sometimes naive.
+author: leafcxy
 # Support language: de, en, fr-FR, id, ja, ko, pt-BR, pt, ru, zh-Hans, zh-hk, zh-tw
 language: zh-Hans
 date_format: '%Y-%m-%d'
@@ -35,7 +35,7 @@ paginate: 10
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", "Gemfile", "Gemfile.lock", "README_en.md", "vendor"]
 
 # Separator
-#excerpt_separator: <!-- more -->
+excerpt_separator: <!-- more -->
 
 # Code Highlighter
 ## 'pygments' is unsupported on GitHub Pages now.
@@ -79,7 +79,7 @@ plugins:
 favicon: https://github.githubassets.com/favicons/favicon.png
 
 # Set default keywords (Use a comma to separate)
-keywords: "Jekyll, NexT, cxyu, Blogs"
+keywords: "Jekyll, NexT, leafcxy, cxyu, Blogs"
 
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
