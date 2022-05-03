@@ -3,4 +3,7 @@ layout: page
 type: about
 ---
 
-Building...
+# My project
+
+* [BBDC](https://github.com/leafcxy/BBDC)
+* [LeaveWord](https://github.com/leafcxy/LeaveWord)
