@@ -1,9 +1,8 @@
 ---
+title: About me
 layout: page
 type: about
 ---
-
-# About me
 
 ## My project
 
