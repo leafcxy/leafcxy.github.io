@@ -17,9 +17,9 @@ echo '---' > $_file
 echo "title: $1" >> $_file
 echo "date: ${_time}" >> $_file
 echo "categories:" >> $_file
-echo "photos:" >> $_file
-echo "tags:" >> $_file
-echo "description:" >> $_file
+# echo "photos:" >> $_file
+# echo "tags:" >> $_file
+# echo "description:" >> $_file
 
 echo '---' >> $_file
 
