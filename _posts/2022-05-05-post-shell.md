@@ -1,8 +1,8 @@
 ---
 title: post-shell
-date: 2022-05-05 10:43:27
+date: 2022-05-04 10:43:27
 categories:
-- it
+- shell
 ---
 
 ```shell
