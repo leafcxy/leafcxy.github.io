@@ -2,6 +2,7 @@
 title: post-shell
 date: 2022-05-05 10:43:27
 categories:
+- it
 ---
 
 ```shell
