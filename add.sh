@@ -1,11 +1,13 @@
 #!/bin/bash
 
+# 验证标题
 if [ $# == 0 ]
 then
 echo 'Add failed'
 exit
 fi
 
+# 考虑时区的问题
 _date=`date '+%Y-%m-%d' -d "-1days"`
 _time=`date '+%Y-%m-%d %H:%M:%S' -d "-1days"`
 _file="./_posts/${_date}-$1.md"
