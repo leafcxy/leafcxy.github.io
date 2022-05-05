@@ -6,8 +6,8 @@ echo 'Add failed'
 exit
 fi
 
-_date=`date '+%Y-%m-%d' -d "-1days"`
-_time=`date '+%Y-%m-%d %H:%M:%S' -d "-1days"`
+_date=`date '+%Y-%m-%d'`
+_time=`date '+%Y-%m-%d %H:%M:%S'`
 _file="./_posts/${_date}-$1.md"
 echo $_time
 
