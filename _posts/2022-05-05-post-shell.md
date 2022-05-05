@@ -1,3 +1,10 @@
+---
+title: post-shell
+date: 2022-05-05 10:43:27
+categories:
+---
+
+```shell
 #!/bin/bash
 
 if [ $# == 0 ]
@@ -21,3 +28,4 @@ printf "%s%s%s\r\n" '-' '-' '-' >> $_file
 
 echo $_file
 echo 'Added successfully'
+```
