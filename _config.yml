@@ -439,7 +439,7 @@ changyan:
 gitalk:
   enable: true
   clientID: 84fa8ddec746c2bb49e1
-  clientSecret: ${{ secrets.CLIENTSECRET }}
+  clientSecret: 5dd351e74c4b21c9e6d31258dbc4869afab697ce
   repo: leafcxy.github.io
   owner: leafcxy
   admin: leafcxy
