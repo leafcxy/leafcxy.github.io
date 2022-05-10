@@ -18,6 +18,7 @@ printf "%s%s%s\r\n" '-' '-' '-' > $_file
 printf "title: $1\r\n" >> $_file
 printf "date: ${_time}\r\n" >> $_file
 printf "categories:\r\n" >> $_file
+printf "tags:\r\n" >> $_file
 
 printf "%s%s%s\r\n" '-' '-' '-' >> $_file
 
