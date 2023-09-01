@@ -5,7 +5,7 @@ categories:
 tags:
 ---
 
-```C#
+```csharp
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -114,7 +114,7 @@ namespace SimpleORM
 }
 ```
 
-```C#
+```csharp
 using System;
 using System.Collections.Generic;
 using System.Reflection;

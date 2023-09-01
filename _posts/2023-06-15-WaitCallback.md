@@ -11,7 +11,7 @@ tags:
 
 例如，以下代码演示了如何使用 `WaitCallback` 委托和 `ThreadPool.QueueUserWorkItem` 方法：
 
-```C#
+```csharp
 WaitCallback callback = new WaitCallback(MyMethod);
 ThreadPool.QueueUserWorkItem(callback, data);
 

@@ -5,7 +5,7 @@ categories:
 tags:
 ---
 
-```C#
+```csharp
 static void Main(string[] args)
 {
     TcpListener listener = new TcpListener(IPAddress.Any, 8080);
