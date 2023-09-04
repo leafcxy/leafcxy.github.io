@@ -51,7 +51,7 @@
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
-        async: false,
+        async: true,
         success: function(res) {
           console.log(res);
           // get the contents from search data
@@ -290,7 +290,11 @@
           $('body').css('overflow', '');
 
           proceedsearch();
-        }
+        },
+        error: function (jqXHR, textStatus) {
+					console.log(jqXHR);
+          console.log(textStatus);
+				}
       });
     }
 
