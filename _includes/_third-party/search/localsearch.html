@@ -51,8 +51,9 @@
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
-        async: true,
+        async: false,
         success: function(res) {
+          console.log(res);
           // get the contents from search data
           isfetched = true;
           $('.popup').detach().appendTo('.header-inner');
