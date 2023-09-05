@@ -19,7 +19,6 @@ sitemap: false
           <tag> {{ tag | strip_html | xml_escape }} </tag>
         {% endfor %}
       </tags>
-      <tags></tags>
     </entry>
   {% endfor %}
 </search>

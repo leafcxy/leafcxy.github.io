@@ -50,7 +50,6 @@
 
       $.ajax({
         url: path,
-        headers:{'Accept':'application/xml'},
         dataType: isXml ? "xml" : "json",
         async: true,
         success: function(res) {
@@ -293,7 +292,6 @@
           proceedsearch();
         },
         error: function (jqXHR, textStatus) {
-					console.log(jqXHR);
           console.log(textStatus);
 				}
       });
