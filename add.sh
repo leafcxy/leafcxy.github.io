@@ -17,8 +17,9 @@ printf "%s%s%s\r\n" '-' '-' '-' > $_file
 
 printf "title: $1\r\n" >> $_file
 printf "date: ${_time}\r\n" >> $_file
-printf "categories: [default]\r\n" >> $_file
-printf "tags: [Jekyll, default]\r\n" >> $_file
+printf "categories: default_categories\r\n" >> $_file
+printf "tags: [Blogs, Jekyll, default_tags]\r\n" >> $_file
+printf "description: default_description...\r\n" >> $_file
 
 printf "%s%s%s\r\n" '-' '-' '-' >> $_file
 
