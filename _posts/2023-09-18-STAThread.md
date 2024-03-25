@@ -1,9 +1,7 @@
 ---
 title: STAThread
 date: 2023-09-18 11:22:48
-categories: default_categories
 tags: [Blogs, Jekyll, default_tags]
-description: default_description...
 ---
 
 [STAThread]

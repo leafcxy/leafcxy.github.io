@@ -32,7 +32,7 @@ paginate: 10
   #paginate_path: "/page:num/"
 
 # Handling Reading
-exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", "Gemfile", "Gemfile.lock", "README_en.md", "vendor"]
+exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", "Gemfile", "Gemfile.lock", "README_en.md", "vendor", "add.sh"]
 
 # Separator
 excerpt_separator: <!-- more -->
@@ -118,8 +118,8 @@ index_with_subtitle: false
 # When running the site in a subdirectory (e.g. domain.tld/blog), remove the leading slash (/archives -> archives)
 menu:
   home: /
-  categories: /categories/
-  about: /about/
+  #categories: /categories/
+  #about: /about/
   archives: /archives/
   tags: /tags/
   #sitemap: /sitemap.xml
@@ -216,7 +216,8 @@ font:
 social:
   #LinkLabel: Link
   GitHub: https://github.com/leafcxy
-  Weibo: https://weibo.com/cxysite
+  #Weibo: https://weibo.com/cxysite
+  E-Mail: mailto:cxy1337@gmail.com
 
 
 # Social Links Icons
@@ -230,7 +231,8 @@ social_icons:
   # KeyMapsToSocialItemKey: NameOfTheIconFromFontAwesome
   GitHub: github
   # Twitter: twitter
-  Weibo: weibo
+  #Weibo: weibo
+  E-Mail: envelope
 
 
 # Sidebar Avatar
@@ -636,7 +638,7 @@ pace_theme: pace-theme-minimal
 canvas_nest: false
 
 # three_waves
-three_waves: false
+three_waves: true
 
 # canvas_lines
 canvas_lines: false

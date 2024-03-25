@@ -1,7 +1,6 @@
 ---
 title: JavaScript自定义事件
 date: 2023-06-15 15:02:14
-categories: JavaScript
 tags:
 ---
 

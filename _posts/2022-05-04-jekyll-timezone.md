@@ -1,8 +1,6 @@
 ---
 title: jekyll-timezone
 date: 2022-05-04 13:35:54
-categories:
-- jekyll
 ---
 
 Jekyll的时区和时间
@@ -22,7 +20,6 @@ Jekyll的时区和时间
 layout: post
 title: Jekyll的时区和时间
 date: 2019-12-02 07:00:00 +0800
-categories: [网络]
 tags: [Jekyll, 网页编写, 网站建设, GitHub Pages]
 ---
 ```

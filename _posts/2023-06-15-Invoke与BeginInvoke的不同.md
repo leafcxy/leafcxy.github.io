@@ -1,7 +1,6 @@
 ---
 title: Invoke与BeginInvoke的不同
 date: 2023-06-15 11:39:12
-categories: .NET
 tags:
 - C#
 - winform

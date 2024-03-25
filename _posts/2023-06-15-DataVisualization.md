@@ -1,7 +1,6 @@
 ---
 title: DataVisualization
 date: 2023-06-15 15:21:56
-categories:
 tags:
 ---
 

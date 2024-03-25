@@ -1,7 +1,6 @@
 ---
 title: ArrayList
 date: 2023-08-31 11:01:19
-categories:
 tags:
 ---
 

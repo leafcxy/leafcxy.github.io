@@ -1,7 +1,6 @@
 ---
 title: SimpleORM
 date: 2023-06-15 15:16:40
-categories:
 tags:
 ---
 

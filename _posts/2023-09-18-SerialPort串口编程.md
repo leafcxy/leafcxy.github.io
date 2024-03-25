@@ -1,9 +1,7 @@
 ---
 title: SerialPort串口编程
 date: 2023-09-18 11:28:54
-categories: default_categories
 tags: [Blogs, Jekyll, default_tags]
-description: default_description...
 ---
 
 从Microsoft .Net 2.0版本以后，就默认提供了System.IO.Ports.SerialPort类，用户可以非常简单地编写少量代码就完成串口的信息收发程序。

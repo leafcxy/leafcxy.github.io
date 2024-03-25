@@ -1,7 +1,6 @@
 ---
 title: Fetch、Ajax和Axios
 date: 2023-07-26 09:42:39
-categories: javascript
 tags: javascript
 ---
 

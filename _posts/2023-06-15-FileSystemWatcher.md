@@ -1,7 +1,6 @@
 ---
 title: FileSystemWatcher
 date: 2023-06-15 15:21:06
-categories:
 tags:
 ---
 

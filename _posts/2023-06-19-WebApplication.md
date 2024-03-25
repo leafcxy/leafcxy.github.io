@@ -1,7 +1,6 @@
 ---
 title: WebApplication
 date: 2023-06-19 13:29:49
-categories:
 tags:
 ---
 
