@@ -61,15 +61,15 @@ defaults:
       comments: true
 
 # Atom feed
-feed:
-  path: atom.xml
+# feed:
+#   path: atom.xml
 
 # Plugins
 ## Docs: https://help.github.com/articles/configuring-jekyll-plugins/
 plugins:
  - jemoji
  - jekyll-sitemap
- - jekyll-feed
+#  - jekyll-feed
 
 # ---------------------------------------------------------------
 # Site Information Settings
@@ -84,7 +84,7 @@ keywords: "Jekyll, NexT, leafcxy, cxyu, Blogs"
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
 # Set rss to specific value if you have burned your feed already.
-rss:
+rss: false
 
 # Specify the date when the site was setup
 #since: 2015
@@ -321,8 +321,8 @@ post_meta:
 # Post wordcount display settings
 post_wordcount:
   item_text: true
-  wordcount: false
-  min2read: false
+  wordcount: true
+  min2read: true
   separated_meta: true
 
 # Wechat Subscriber
@@ -644,11 +644,11 @@ three_waves: false
 canvas_lines: false
 
 # canvas_sphere
-canvas_sphere: true
+canvas_sphere: false
 
 # Only fit scheme Pisces
 # Canvas-ribbon
-canvas_ribbon: false
+canvas_ribbon: true
 
 # Script Vendors.
 # Set a CDN address for the vendor you want to customize.
