@@ -33,3 +33,47 @@ tags: [orc]
 
 通过以上步骤，您就可以开始在您的项目中使用Tesseract OCR进行文字识别了。记得根据实际需求调整配置以优化识别效果。
 
+## test
+
+```shell
+D:\Tesseract-OCR>tesseract.exe --version
+tesseract v5.4.0.20240606
+ leptonica-1.84.1
+  libgif 5.2.1 : libjpeg 8d (libjpeg-turbo 3.0.1) : libpng 1.6.43 : libtiff 4.6.0 : zlib 1.3 : libwebp 1.4.0 : libopenjp2 2.5.2
+ Found AVX512BW
+ Found AVX512F
+ Found AVX512VNNI
+ Found AVX2
+ Found AVX
+ Found FMA
+ Found SSE4.1
+ Found libarchive 3.7.4 zlib/1.3.1 liblzma/5.6.1 bz2lib/1.0.8 liblz4/1.9.4 libzstd/1.5.6
+
+D:\Tesseract-OCR>tesseract --version
+tesseract v5.4.0.20240606
+ leptonica-1.84.1
+  libgif 5.2.1 : libjpeg 8d (libjpeg-turbo 3.0.1) : libpng 1.6.43 : libtiff 4.6.0 : zlib 1.3 : libwebp 1.4.0 : libopenjp2 2.5.2
+ Found AVX512BW
+ Found AVX512F
+ Found AVX512VNNI
+ Found AVX2
+ Found AVX
+ Found FMA
+ Found SSE4.1
+ Found libarchive 3.7.4 zlib/1.3.1 liblzma/5.6.1 bz2lib/1.0.8 liblz4/1.9.4 libzstd/1.5.6
+
+D:\Tesseract-OCR>tesseract --list-langs
+List of available languages in "D:\Tesseract-OCR/tessdata/" (7):
+chi_sim
+chi_sim_vert
+chi_tra
+chi_tra_vert
+eng
+enm
+osd
+
+D:\Tesseract-OCR>tesseract D:\Tesseract-OCR\input\test.png test.txt -l eng
+
+D:\Tesseract-OCR>tesseract D:\Tesseract-OCR\input\testforchs.png D:\Tesseract-OCR\output\testforchs -l chi_sim
+
+```
