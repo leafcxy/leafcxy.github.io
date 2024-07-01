@@ -71,7 +71,7 @@ plugins:
  - jekyll-sitemap
 #  - jekyll-feed
 
-timezone: Asia/Shanghai
+# timezone: Asia/Shanghai
 
 # ---------------------------------------------------------------
 # Site Information Settings

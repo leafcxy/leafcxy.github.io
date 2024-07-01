@@ -7,9 +7,12 @@ echo 'Add failed'
 exit
 fi
 
+# 获取当前时间戳并减去8小时（28800秒）
+adjusted_timestamp=$(($(date +%s) - 28800))
+
 # 考虑时区的问题
-_date=`date '+%Y-%m-%d'`
-_time=`date '+%Y-%m-%d %H:%M:%S'`
+_date=$(date -d @$adjusted_timestamp +"%Y-%m-%d")
+_time=$(date -d @$adjusted_timestamp +"%Y-%m-%d %H:%M:%S")
 _file="./_posts/${_date}-$1.md"
 echo $_time
 
