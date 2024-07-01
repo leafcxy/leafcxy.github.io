@@ -5,7 +5,7 @@ tags: [Blogs, Jekyll, default_tags]
 ---
 
 
-Jekyll timezone 配置有坑，统一使用utc时间
+Jekyll timezone 配置有坑，统一使用utc时间 1051
 
 ```bash
 $ sh add.sh "timezone issue"
