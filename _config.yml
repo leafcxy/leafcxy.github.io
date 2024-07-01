@@ -71,6 +71,8 @@ plugins:
  - jekyll-sitemap
 #  - jekyll-feed
 
+timezone: Asia/Shanghai
+
 # ---------------------------------------------------------------
 # Site Information Settings
 # ---------------------------------------------------------------
@@ -87,7 +89,7 @@ keywords: "Jekyll, NexT, leafcxy, cxyu, Blogs"
 rss: false
 
 # Specify the date when the site was setup
-#since: 2015
+since: 2018
 
 # icon between year and author @Footer
 authoricon: heart
