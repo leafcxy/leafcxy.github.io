@@ -282,12 +282,6 @@
       {% endif %}
 
       {% unless is_index %}
-      {% if site.vkontakte_api.enable and site.vkontakte_api.like %}
-        {% assign vkontakte_api = true %}
-      {% endif %}
-      {% endunless %}
-
-      {% unless is_index %}
       {% if post.previous or post.next %}
         <div class="post-nav" id="post-nav-id">
           <div class="post-nav-next post-nav-item">
