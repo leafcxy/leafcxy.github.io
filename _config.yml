@@ -405,9 +405,6 @@ wildfire:
 # Hypercomments
 #hypercomments_id:
 
-# Gentie productKey
-#gentie_productKey:
-
 # changyan
 changyan:
   enable: false

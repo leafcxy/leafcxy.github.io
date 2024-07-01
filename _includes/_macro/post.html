@@ -147,16 +147,6 @@
                 </a>
               </span>
               <!--/noindex-->
-            {% elsif post.layout == 'post' and site.gentie_productKey %}
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a class="cloud-tie-join-count" href="{{ post.url | relative_url }}#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
-                </a>
-              </span>
             {% elsif site.changyan.enable and site.changyan.appid and site.changyan.appkey %}
               <span class="post-comments-count">
               <span class="post-meta-divider">|</span>
