@@ -373,13 +373,6 @@ mathjax:
 # Han Support docs: https://hanzi.pro/
 han: true
 
-# Hypercomments
-#hypercomments_id:
-
-# Support for LiveRe comments system.
-# You can get your uid from https://livere.com/insight/myCode (General web site)
-#livere_uid: your uid
-
 # Support for gitalk comments system.
 gitalk:
   enable: false
