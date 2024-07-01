@@ -391,9 +391,6 @@ gitalk:
 # See: https://www.google.com/webmasters/
 #google_site_verification:
 
-# Google Analytics
-#google_analytics:
-
 # Yandex Webmaster tools verification setting
 # See: https://webmaster.yandex.ru/
 #yandex_site_verification:
@@ -464,13 +461,6 @@ busuanzi_count:
   page_pv: true
   page_pv_header: <i class="fa fa-file-o"></i>
   page_pv_footer:
-
-
-# Tencent analytics ID
-# tencent_analytics:
-
-# Tencent MTA ID
-# tencent_mta:
 
 
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO
