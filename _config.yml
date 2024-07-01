@@ -376,9 +376,6 @@ han: false
 # Swiftype Search API Key
 #swiftype_key:
 
-# Baidu Analytics ID
-#baidu_analytics:
-
 # <wildfire>
 wildfire:
   enable: false
@@ -433,13 +430,6 @@ gitalk:
   repo: # leafcxy.github.io
   owner: # leafcxy
   admin: # leafcxy
-
-# Baidu Share
-# Available value:
-#    button | slide
-# Warning: Baidu Share does not support https.
-#baidushare:
-##  type: button
 
 # Share
 #jiathis:
