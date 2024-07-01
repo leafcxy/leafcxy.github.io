@@ -1,6 +1,6 @@
 ---
 title: Coding Interview University
-date: 2024-07-01 09:02:47
+date: 2024-07-01 01:02:47
 tags: [Blogs, Jekyll, default_tags]
 ---
 
