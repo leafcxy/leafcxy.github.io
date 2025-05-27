@@ -6,6 +6,8 @@ tags:
 
 在64位程序中运行使用Microsoft.Jet.OLEDB.4.0需要特别注意，因为Microsoft.Jet.OLEDB.4.0驱动程序是为32位环境设计的。在64位操作系统和64位应用程序中，它可能无法正常工作。
 
+<!-- more -->
+
 如果你需要在64位程序中使用Microsoft.Jet.OLEDB.4.0，你可以尝试以下方法：
 
 使用WoW64（Windows on Windows 64）桥接器：WoW64是Windows提供的一种机制，允许32位应用程序在64位环境中运行。你可以通过在64位程序中调用WoW64桥接器来访问Microsoft.Jet.OLEDB.4.0驱动程序。这可以通过编程方式实现，例如使用系统调用来调用适当的WoW64函数。

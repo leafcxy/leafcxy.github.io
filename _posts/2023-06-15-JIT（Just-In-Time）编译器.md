@@ -8,6 +8,8 @@ tags:
 在 .NET 中，JIT（Just-In-Time）编译器是一种将 MSIL（Microsoft Intermediate Language）代码转换为本机机器代码的动态编译器。
 JIT 编译器在程序运行时将 MSIL 代码编译为本机代码，以便在计算机上运行。
 
+<!-- more -->
+
 JIT 编译器是 .NET 运行时的一部分，它负责将 MSIL 代码转换为本机代码。
 当 .NET 应用程序启动时，CLR（Common Language Runtime）会将 MSIL 代码加载到内存中，
 然后 JIT 编译器会将代码编译为本机代码，以便在计算机上运行。这个过程是在运行时动态进行的，因此称之为 JIT。

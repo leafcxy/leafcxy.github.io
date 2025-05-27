@@ -8,6 +8,8 @@ tags: [Blogs, Jekyll, default_tags]
 
 <!-- more -->
 
+<!-- more -->
+
 ```html
 <!DOCTYPE html>
 <html lang="en">

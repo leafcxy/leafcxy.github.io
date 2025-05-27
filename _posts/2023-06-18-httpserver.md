@@ -4,6 +4,8 @@ date: 2023-06-18 11:29:39
 tags:
 ---
 
+<!-- more -->
+
 ```csharp
 static void Main(string[] args)
 {

@@ -14,6 +14,7 @@ tags: [Blogs, error]
 
 这个方法原本是一个string类型的switch，switch本身就要计算hash来判断，但是反编译工具对这个的解析出了问题，
 
+<!-- more -->
 
 ```csharp
 [CompilerGenerated]

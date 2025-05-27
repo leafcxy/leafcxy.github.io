@@ -8,6 +8,8 @@ tags: [orc]
 
 - Q:这个开源库要怎么开始使用？https://github.com/tesseract-ocr/tesseract
 
+<!-- more -->
+
 - A:要开始使用Tesseract OCR开源库，您需要经过以下几个步骤：
  1. 下载与安装Tesseract
     - 访问Tesseract的GitHub页面: https://github.com/tesseract-ocr/tesseract

@@ -6,6 +6,8 @@ tags:
 
 ## JavaScript 自定义事件 Demo
 
+<!-- more -->
+
 ```html
 <!DOCTYPE html>
 <html>

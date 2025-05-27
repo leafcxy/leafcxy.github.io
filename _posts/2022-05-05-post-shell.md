@@ -3,6 +3,8 @@ title: post-shell
 date: 2022-05-04 10:43:27
 ---
 
+<!-- more -->
+
 ```shell
 #!/bin/bash
 

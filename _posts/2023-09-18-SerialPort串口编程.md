@@ -6,6 +6,8 @@ tags: [Blogs, Jekyll, default_tags]
 
 从Microsoft .Net 2.0版本以后，就默认提供了System.IO.Ports.SerialPort类，用户可以非常简单地编写少量代码就完成串口的信息收发程序。
 
+<!-- more -->
+
 ## 串口端口号搜索
 
 ```csharp

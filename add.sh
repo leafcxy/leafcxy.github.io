@@ -11,9 +11,9 @@ fi
 adjusted_timestamp=$(($(date +%s) - 28800))
 
 # 考虑时区的问题
-_date=$(date -d @$adjusted_timestamp +"%Y-%m-%d")
+_date=$(date -d @$adjusted_timestamp +"%Y-%m-%d-%H%M%S")
 _time=$(date -d @$adjusted_timestamp +"%Y-%m-%d %H:%M:%S")
-_file="./_posts/${_date}-$1.md"
+_file="./_posts/${_date}.md"
 echo $_time
 
 printf "%s%s%s\r\n" '-' '-' '-' > $_file

@@ -6,6 +6,8 @@ tags:
 - winform
 ---
 
+<!-- more -->
+
 不同点：
 Invoke是同步更新，会阻塞所在工作者线程，BeginInvoke是异步更新，不会阻塞当前线程。
 Invoke调用后将指定代码立即插入主线程中执行，而BeginInvoke调用后，发送消息给UI线程，

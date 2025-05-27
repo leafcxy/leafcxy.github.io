@@ -4,6 +4,8 @@ date: 2023-06-19 13:29:49
 tags:
 ---
 
+<!-- more -->
+
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
 

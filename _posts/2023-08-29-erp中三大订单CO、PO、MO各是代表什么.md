@@ -11,6 +11,8 @@ ERP即 企业资源计划 (Enterprise Resource Planning)，由美国 Gartner Gro
 　　PO：采购订单
 　　MO：生产订单
 
+<!-- more -->
+
 ERP---企业资源计划（Enterprise Resource Planning）. []
 
 20 世纪90 年代MRP-II 发展到了一个新的阶段：ERP（EnterpriseResourcePlanning—企业资源计划）

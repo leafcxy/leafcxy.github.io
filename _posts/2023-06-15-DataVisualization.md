@@ -4,6 +4,8 @@ date: 2023-06-15 15:21:56
 tags:
 ---
 
+<!-- more -->
+
 ```csharp
 using System;
 using System.Drawing;
