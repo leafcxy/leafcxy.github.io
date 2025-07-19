@@ -1,0 +1,43 @@
+---
+title: ComputeStringHash错误解决办法
+date: 2024-09-03 02:23:04
+tags: [Blogs, error]
+---
+
+
+
+用 ILSPY 或者 .NET Reflector 、dnspy 等反编译出来之后 <PrivateImplementationDetails> 文件由于语法不符合已经被丢弃了，
+
+所以在反编译工具里面找到这个类，手动复制出来，新建一个类，把尖括号等去掉，方法就只保留 ComputeStringHash 方法就行了。
+
+再在报错的地方也把尖括号去掉。
+
+这个方法原本是一个string类型的switch，switch本身就要计算hash来判断，但是反编译工具对这个的解析出了问题，
+
+<!-- more -->
+
+```csharp
+[CompilerGenerated]
+internal sealed class PrivateImplementationDetails
+{
+    internal static uint ComputeStringHash(string s)
+    {
+        uint num = 0;
+        if(s != null)
+        {
+            num = 2166136261U;
+            for(int i=0;i<s.Length;i++)
+            {
+                num = ((uint)s[i] ^ num)*16777619U;
+            }
+        }
+        return num;
+    }
+}
+```
+
+
+重建类后测试  ComputeStringHash("link")最后的结果就是 232457833 ，
+
+如果判断条件不多的话其实可以直接把这个数字判断全部删掉，重写switch或者if都可以。如果判断条件很多懒得弄就自建PrivateImplementationDetails是最简单的
+

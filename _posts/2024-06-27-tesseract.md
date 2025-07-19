@@ -1,0 +1,81 @@
+---
+title: tesseract
+date: 2024-06-27 10:01:35
+tags: [orc]
+---
+
+## 怎么开始使用？
+
+- Q:这个开源库要怎么开始使用？https://github.com/tesseract-ocr/tesseract
+
+<!-- more -->
+
+- A:要开始使用Tesseract OCR开源库，您需要经过以下几个步骤：
+ 1. 下载与安装Tesseract
+    - 访问Tesseract的GitHub页面: https://github.com/tesseract-ocr/tesseract
+    - 根据您的操作系统选择合适的安装方法。对于Windows用户，您可以直接下载预编译的可执行文件，通常推荐从UB Mannheim的发布页面下载稳定版本：Tesseract Releases
+ 2. 设置环境变量
+    - 添加Tesseract可执行文件的路径到系统的PATH环境变量中，以便在命令行任何位置调用tesseract命令。
+    - 同样，需要设置TESSDATA_PREFIX环境变量指向包含tessdata文件夹的路径，该文件夹内存储了语言数据包
+ 3. 安装语言数据包
+    - Tesseract需要相应的语言数据包才能进行识别。您可以从这里下载所需的语言包（.traineddata文件）。
+    - 将下载的.traineddata文件放置到<TESSDATA_PREFIX>/tessdata目录下。例如，对于英文识别，您需要eng.traineddata。
+ 4. 测试安装
+    - 打开命令提示符或终端，输入 tesseract --version 来确认Tesseract已成功安装及其版本信息。
+    - 运行 tesseract --list-langs 来查看已安装的语言包列表。
+ 5. 使用Tesseract进行识别
+    - 基本命令格式为：tesseract <input_image> <output_text> [-l <language>]
+        <input_image> 是您要识别的图片文件路径。
+        <output_text> 是输出文本文件的名称。
+        -l <language> 是指定识别的语言，默认为英文。
+ 6. 在C#项目中集成Tesseract
+    要在C#项目中使用Tesseract，您可以使用第三方封装库，如Tesseract.SPI或Tesseract。首先，在Visual Studio中打开您的项目，然后通过NuGet包管理器安装这些库之一。
+    Install-Package Tesseract -Version 4.1.1
+    接着，按照前面提到的C#示例代码来调用Tesseract进行OCR识别。
+
+通过以上步骤，您就可以开始在您的项目中使用Tesseract OCR进行文字识别了。记得根据实际需求调整配置以优化识别效果。
+
+## test
+
+```shell
+D:\Tesseract-OCR>tesseract.exe --version
+tesseract v5.4.0.20240606
+ leptonica-1.84.1
+  libgif 5.2.1 : libjpeg 8d (libjpeg-turbo 3.0.1) : libpng 1.6.43 : libtiff 4.6.0 : zlib 1.3 : libwebp 1.4.0 : libopenjp2 2.5.2
+ Found AVX512BW
+ Found AVX512F
+ Found AVX512VNNI
+ Found AVX2
+ Found AVX
+ Found FMA
+ Found SSE4.1
+ Found libarchive 3.7.4 zlib/1.3.1 liblzma/5.6.1 bz2lib/1.0.8 liblz4/1.9.4 libzstd/1.5.6
+
+D:\Tesseract-OCR>tesseract --version
+tesseract v5.4.0.20240606
+ leptonica-1.84.1
+  libgif 5.2.1 : libjpeg 8d (libjpeg-turbo 3.0.1) : libpng 1.6.43 : libtiff 4.6.0 : zlib 1.3 : libwebp 1.4.0 : libopenjp2 2.5.2
+ Found AVX512BW
+ Found AVX512F
+ Found AVX512VNNI
+ Found AVX2
+ Found AVX
+ Found FMA
+ Found SSE4.1
+ Found libarchive 3.7.4 zlib/1.3.1 liblzma/5.6.1 bz2lib/1.0.8 liblz4/1.9.4 libzstd/1.5.6
+
+D:\Tesseract-OCR>tesseract --list-langs
+List of available languages in "D:\Tesseract-OCR/tessdata/" (7):
+chi_sim
+chi_sim_vert
+chi_tra
+chi_tra_vert
+eng
+enm
+osd
+
+D:\Tesseract-OCR>tesseract D:\Tesseract-OCR\input\test.png test.txt -l eng
+
+D:\Tesseract-OCR>tesseract D:\Tesseract-OCR\input\testforchs.png D:\Tesseract-OCR\output\testforchs -l chi_sim
+
+```

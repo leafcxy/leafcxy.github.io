@@ -1,0 +1,68 @@
+---
+title: ArrayList
+date: 2023-08-31 11:01:19
+tags:
+---
+
+在C#中，ArrayList和List<T>都用于存储集合的数据，但它们有一些重要的区别。
+
+<!-- more -->
+
+类型安全：
+
+ArrayList：ArrayList是泛型集合类，它允许存储任何类型的数据。然而，由于它不是强类型的，因此在操作数据时可能会出现类型错误。
+List<T>：List<T>是泛型集合类，这意味着它只能存储同一种类型的数据。由于它是强类型的，因此在编译时就能发现类型错误。
+性能：
+
+ArrayList：ArrayList的性能通常比List<T>低。由于它不是泛型类型，因此在存储数据时需要进行装箱和拆箱操作，这会增加额外的开销。
+List<T>：List<T>是泛型类型，所以在存储数据时没有装箱和拆箱操作。这使得List<T>在处理大量数据时比ArrayList更有效率。
+方法：
+
+ArrayList：ArrayList提供的方法比List<T>少，例如没有内置的索引器。
+List<T>：List<T>提供了更多的方法和功能，例如内置的索引器。
+总的来说，如果你知道你的集合将只包含一种类型的数据，并且关心性能，那么使用List<T>通常是更好的选择。如果你需要存储不同类型的数据，或者不关心性能，那么可以使用ArrayList。
+
+```csharp
+using System;  
+using System.Collections.Generic;  
+  
+namespace ArrayListDemo  
+{  
+    class Program  
+    {  
+        static void Main(string[] args)  
+        {  
+            // 创建一个ArrayList  
+            ArrayList myArrayList = new ArrayList();  
+  
+            // 向ArrayList添加元素  
+            myArrayList.Add("Apple");  
+            myArrayList.Add("Banana");  
+            myArrayList.Add("Cherry");  
+  
+            // 输出ArrayList中的元素数量  
+            Console.WriteLine("ArrayList中的元素数量：" + myArrayList.Count);  
+  
+            // 遍历ArrayList并输出其中的元素  
+            foreach (var item in myArrayList)  
+            {  
+                Console.WriteLine(item);  
+            }  
+  
+            // 在ArrayList中查找元素并输出其索引位置  
+            int index = myArrayList.IndexOf("Banana");  
+            Console.WriteLine("Banana在ArrayList中的索引位置：" + index);  
+  
+            // 在ArrayList中移除元素并输出新元素数量  
+            myArrayList.Remove("Cherry");  
+            Console.WriteLine("移除元素后的ArrayList中的元素数量：" + myArrayList.Count);  
+  
+            // 清空ArrayList中的所有元素  
+            myArrayList.Clear();  
+            Console.WriteLine("清空后的ArrayList中的元素数量：" + myArrayList.Count);  
+  
+            Console.ReadLine();  
+        }  
+    }  
+}
+```

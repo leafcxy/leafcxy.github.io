@@ -1,0 +1,91 @@
+---
+title: 设置代理解决github被墙
+date: 2023-08-31 21:07:56
+tags:
+---
+
+虽然有梯子，可以正常访问github页面，但是在发现“git clone”命令速度特别慢，有时还经常卡掉。可以通过设置git 代理，解决被墙问题。
+
+<!-- more -->
+
+git 有几种传输协议，在Github上主要用到的是Https和SSH协议。所以我们要做的是对git 命令的https 以及ssh流量做代理。
+
+## 设置https 代理
+
+Git代理有两种设置方式，分别是全局代理和只对Github代理，建议只对github 代理。代理协议也有两种，分别是使用http代理和使用socks5代理，建议使用socks5代理。注意下面代码的端口号需要根据你自己的代理端口设定，比如我的代理socks端口是51837。
+
+
+### 全局设置（不推荐）
+
+```shell
+#使用http代理 
+git config --global http.proxy http://127.0.0.1:58591
+git config --global https.proxy https://127.0.0.1:58591
+#使用socks5代理
+git config --global http.proxy socks5://127.0.0.1:51837
+git config --global https.proxy socks5://127.0.0.1:51837
+```
+
+### 只对Github代理（推荐）
+
+```shell
+#使用socks5代理（推荐）
+git config --global http.https://github.com.proxy socks5://127.0.0.1:51837
+#使用http代理（不推荐）
+git config --global http.https://github.com.proxy http://127.0.0.1:58591
+```
+
+### 取消代理
+
+```shell
+git config --global --unset http.proxy git config --global --unset https.proxy
+```
+
+### 设置ssh代理（终极解决方案）
+
+https代理存在一个局限，那就是没有办法做身份验证，每次拉取私库或者推送代码时，都需要输入github的账号和密码，非常痛苦。
+设置ssh代理前，请确保你已经设置ssh key。可以参考在 github 上添加 SSH key 完成设置
+更进一步是设置ssh代理。只需要配置一个config就可以了。
+
+```shell
+# Linux、MacOS
+vi ~/.ssh/config
+# Windows 
+到C:\Users\your_user_name\.ssh目录下，新建一个config文件（无后缀名）
+```
+
+将下面内容加到config文件中即可
+
+对于windows用户，代理会用到connect.exe，你如果安装了Git都会自带connect.exe，如我的路径为C:\APP\Git\mingw64\bin\connect
+
+```shell
+#Windows用户，注意替换你的端口号和connect.exe的路径
+ProxyCommand "C:\APP\Git\mingw64\bin\connect" -S 127.0.0.1:51837 -a none %h %p
+
+#MacOS用户用下方这条命令，注意替换你的端口号
+#ProxyCommand nc -v -x 127.0.0.1:51837 %h %p
+
+Host github.com
+  User git
+  Port 22
+  Hostname github.com
+  # 注意修改路径为你的路径
+  IdentityFile "C:\Users\Your_User_Name\.ssh\id_rsa"
+  TCPKeepAlive yes
+
+Host ssh.github.com
+  User git
+  Port 443
+  Hostname ssh.github.com
+  # 注意修改路径为你的路径
+  IdentityFile "C:\Users\Your_User_Name\.ssh\id_rsa"
+  TCPKeepAlive yes
+```
+
+保存后文件后测试方法如下，返回successful之类的就成功了。
+
+```shell
+# 测试是否设置成功
+ssh -T git@github.com
+```
+

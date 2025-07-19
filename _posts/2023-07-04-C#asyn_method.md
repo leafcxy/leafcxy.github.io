@@ -1,0 +1,78 @@
+---
+title: C#中异步调用函数的方法有哪些
+date: 2023-07-04 11:09:10
+tags:
+---
+
+
+在 C# 中，有几种方法可以进行异步调用函数：
+
+<!-- more -->
+
+1. 使用 `async/await` 关键字：`async/await` 是 C# 中用于编写异步代码的关键字组合。你可以将需要异步执行的函数标记为 `async`，然后在其中使用 `await` 关键字来等待异步操作完成。这样可以使函数在异步操作执行期间不阻塞，并在操作完成后继续执行。例如：
+
+```csharp
+public async Task MyAsyncMethod()
+{
+    // 异步操作
+    await Task.Delay(1000);
+
+    // 异步操作完成后的代码
+    Console.WriteLine("异步操作完成");
+}
+```
+
+<!-- more -->
+
+2. 使用 `Task.Run` 方法：`Task.Run` 方法可以将一个方法或代码块包装成一个 `Task` 对象，并在后台线程上执行。这样可以实现异步调用函数的效果。例如：
+
+```csharp
+public void MyMethod()
+{
+    // 异步调用函数
+    Task.Run(async () =>
+    {
+        // 异步操作
+        await Task.Delay(1000);
+
+        // 异步操作完成后的代码
+        Console.WriteLine("异步操作完成");
+    });
+
+    // 继续执行其他代码
+    Console.WriteLine("异步调用进行中");
+}
+```
+
+3. 使用委托和回调函数：你可以定义一个异步委托，并使用回调函数来处理异步操作完成后的结果。例如：
+
+```csharp
+public delegate void MyAsyncDelegate();
+
+public void MyMethod()
+{
+    // 创建异步委托实例
+    MyAsyncDelegate asyncDelegate = new MyAsyncDelegate(MyAsyncMethod);
+
+    // 异步调用委托
+    asyncDelegate.BeginInvoke(MyAsyncCallback, null);
+
+    // 继续执行其他代码
+    Console.WriteLine("异步调用进行中");
+}
+
+public void MyAsyncMethod()
+{
+    // 异步操作
+    Thread.Sleep(1000);
+}
+
+public void MyAsyncCallback(IAsyncResult result)
+{
+    // 异步操作完成后的代码
+    Console.WriteLine("异步操作完成");
+}
+```
+
+这些是在 C# 中进行异步调用函数的几种常见方法。你可以根据具体的需求选择适合的方法来实现异步操作。
+

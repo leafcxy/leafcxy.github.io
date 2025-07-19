@@ -1,0 +1,35 @@
+---
+title: 关于浏览器css&js缓存
+date: 2023-07-06 13:25:10
+tags:
+---
+
+## 关于浏览器css,js缓存
+
+- ctrl + F5 强制刷新
+- 如果刷新浏览器无法清除js的缓存，就可以尝试在js文件后面加上版本号，例如：js.js?v=
+- 在html头部加上no-cache
+
+<!-- more -->
+
+## Cache-Control
+
+Cache-Control是HTTP协议中的一个响应头部字段，用于控制缓存的行为。它指示客户端和中间缓存服务器如何缓存和重新验证响应。
+
+Cache-Control可以包含多个指令，每个指令具有不同的含义和参数。常见的指令包括：
+
+- public：表示响应可以被任何缓存（包括客户端和中间缓存服务器）缓存。
+- private：表示响应只能被客户端缓存，中间缓存服务器不能缓存。
+- no-cache：表示缓存服务器不能直接使用缓存的副本，而是需要与服务器进行重新验证。
+- no-store：表示不允许缓存服务器存储任何与该响应相关的内容。
+- max-age：表示响应的有效期，以秒为单位。缓存服务器在过期之前可以使用缓存的副本。
+- s-maxage：与max-age类似，但仅适用于中间缓存服务器。
+
+使用Cache-Control可以有效地控制缓存的行为，提高网站的性能和用户体验。在C#中，可以通过设置HttpResponse的Headers属性来添加Cache-Control头部字段，例如：
+
+```csharp
+Response.Headers.Add("Cache-Control", "public, max-age=3600");
+```
+
+上述代码将在响应中添加一个Cache-Control头部字段，指示客户端和中间缓存服务器可以缓存该响应，并将其缓存有效期设置为3600秒（1小时）。
+

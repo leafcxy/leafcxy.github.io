@@ -1,0 +1,26 @@
+---
+title: 不能在控制元件上呼叫 Invoke
+date: 2023-12-04 11:19:00
+tags: [Blogs, Jekyll, default_tags]
+---
+
+在Window窗體程式開發的時候，如果使用多執行緒程式設計，在子執行緒中訪問主執行緒窗體內的控制元件，就需要使用控制元件的Control.Invoke方法或者BeginInvoke方法。但是有時候因為Window執行速度太快，尤其是你寫程式碼的時候在InitializeComponent();完成之前起了一個執行緒去執行某些操作，涉及到窗體控制元件的，當你在呼叫Control.Invoke的時候，就可能出現 “在建立視窗控制代碼之前，不能在控制元件上呼叫 Invoke 或 BeginInvoke
+
+<!-- more -->
+
+解決的辦法就是讓執行緒等待，直到視窗控制代碼建立完畢：
+
+```csharp
+while (!this.IsHandleCreated) 
+{ 
+    ; 
+} 
+this.BeginInvoke(new ProListIndexChangedDelegate(GetProLyric));
+
+//根據不同情況也可以： 
+if (this.IsHandleCreated) 
+BeginInvoke(new ProListIndexChangedDelegate(GetProLyric));
+```
+
+有一個更巧妙的方法，只要在BeginInvoke方法的呼叫語句前再加一句：IntPtr i = this.Handle;就OK了，這比死迴圈配合this.IsHandleCreated的判斷方法更簡潔，因為this.Handle這個屬性本身就對應一個方法，取不到控制代碼，程式就不會向下進行。
+
