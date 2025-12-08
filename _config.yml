@@ -366,7 +366,7 @@ highlight_theme: night
 
 # MathJax Support
 mathjax:
-  enable: true
+  enable: false
   per_page: true
   cdn: //cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML
 
