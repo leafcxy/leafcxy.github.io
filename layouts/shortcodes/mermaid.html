@@ -1,0 +1,5 @@
+{{- /* 用法: {{< mermaid >}} ... {{< /mermaid >}} */ -}}
+{{- .Page.Store.Set "hasMermaid" true -}}
+<div class="mermaid" align="{{ .Get `align` | default `center` }}">
+  {{- .Inner | safeHTML -}}
+</div>
