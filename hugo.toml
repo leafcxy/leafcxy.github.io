@@ -1,0 +1,206 @@
+# ============================================================
+# Hugo 站点配置 - PaperMod 主题
+# ============================================================
+
+# ---- 基本设置 ----
+baseURL = 'https://leafcxy.github.io/'
+locale = 'zh-cn'
+defaultContentLanguage = 'zh'
+title = "LeafCxy's Blog"
+theme = 'PaperMod'
+
+# 每页显示文章数
+paginate = 10
+
+# 摘要长度（字符数）
+summaryLength = 120
+
+# ---- 作者信息 ----
+[author]
+  name = "LeafCxy"
+
+# ---- 全局 SEO 与描述 ----
+description = "记录技术、生活与思考的个人博客"
+
+# ---- 日期格式 ----
+dateFormat = "2006-01-02"
+
+# ============================================================
+# PaperMod 主题参数
+# ============================================================
+[params]
+
+  # -- 环境：开发使用 "development"，生产部署设为 "production"
+  env = "production"
+
+  # -- 主题设置 --
+  # defaultTheme: auto（跟随系统）/ dark / light
+  defaultTheme = "auto"
+  # 是否禁用主题切换按钮
+  disableThemeToggle = false
+  # 是否禁用滚动到顶部按钮
+  disableScrollToTop = false
+  # 是否禁用代码块复制按钮
+  ShowCodeCopyButtons = true
+  # 是否在文章页面显示目录（TOC）
+  ShowToc = true
+  # 是否显示面包屑导航
+  ShowBreadCrumbs = true
+  # 是否显示文章导航（上一篇/下一篇）
+  ShowPostNavLinks = true
+  # 是否显示阅读时长
+  ShowReadingTime = true
+  # 是否显示分享按钮
+  ShowShareButtons = true
+  # 是否在归档页显示 RSS 按钮
+  ShowRssButtonInSectionTermList = true
+  # 归档页是否显示所有页面
+  ShowAllPagesInArchive = false
+
+  # -- 内容主分区（告诉 Hugo 哪些 section 算文章）--
+  mainSections = ["posts"]
+
+  # -- 是否禁用首页首篇文章的特殊样式 --
+  disableSpecial1stPost = false
+
+  # -- 站点关键词 --
+  keywords = ["博客", "技术", "编程"]
+
+  # -- 文章封面图片设置 --
+  [params.cover]
+    linkFullImages = true
+    responsiveImages = true
+
+  # -- 页脚设置 --
+  [params.footer]
+    hideCopyright = false
+    text = "© 2024 LeafCxy · Powered by Hugo & PaperMod"
+
+  # -- 资源指纹（生产环境建议启用，缓存破坏）--
+  [params.assets]
+    disableFingerprinting = false
+    # 可自定义 favicon
+    # favicon = "/favicon.ico"
+    # favicon16x16 = "/favicon-16x16.png"
+    # favicon32x32 = "/favicon-32x32.png"
+
+  # -- 搜索配置（Fuse.js）--
+  [params.fuseOpts]
+    isCaseSensitive = false
+    shouldSort = true
+    location = 0
+    distance = 1000
+    threshold = 0.4
+    minMatchCharLength = 0
+    # 按哪些字段搜索
+    keys = ["title", "permalink", "summary", "content"]
+
+# ============================================================
+# 首页配置（三选一）
+# ============================================================
+
+# 默认模式：显示文章列表（无需额外配置）
+
+# 方案一：Home-Info 模式（显示一段简介 + 社交链接）
+# [params.homeInfoParams]
+#   Title = "Hi there 👋"
+#   Content = "欢迎来到我的博客，这里记录了我的技术探索与生活思考。"
+#   AlignSocialIconsTo = "center"
+
+# 方案二：Profile 模式（个人名片风格）
+# [params.profileMode]
+#   enabled = true
+#   title = "LeafCxy"
+#   subtitle = "Developer & Tech Enthusiast"
+#   imageUrl = "/avatar.png"
+#   imageWidth = 150
+#   imageHeight = 150
+#   [[params.profileMode.buttons]]
+#     name = "GitHub"
+#     url = "https://github.com/leafcxy"
+
+# ============================================================
+# 社交链接（显示在首页和文章页）
+# ============================================================
+[[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/leafcxy"
+
+# 需要其他社交链接时取消注释：
+# [[params.socialIcons]]
+#   name = "twitter"
+#   url = "https://twitter.com/yourname"
+# [[params.socialIcons]]
+#   name = "email"
+#   url = "mailto:your@email.com"
+# [[params.socialIcons]]
+#   name = "rss"
+#   url = "/index.xml"
+
+# ============================================================
+# 导航菜单
+# ============================================================
+[[menu.main]]
+  identifier = "posts"
+  name = "文章"
+  url = "/posts/"
+  weight = 10
+
+[[menu.main]]
+  identifier = "archives"
+  name = "归档"
+  url = "/archives/"
+  weight = 20
+
+[[menu.main]]
+  identifier = "tags"
+  name = "标签"
+  url = "/tags/"
+  weight = 30
+
+[[menu.main]]
+  identifier = "search"
+  name = "搜索"
+  url = "/search/"
+  weight = 40
+
+# ============================================================
+# 分类法配置
+# ============================================================
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
+
+# ============================================================
+# Markdown 渲染
+# ============================================================
+[markup]
+  [markup.highlight]
+    # 代码高亮主题（PaperMod 使用 Chroma）
+    style = "monokai"
+    # 是否在代码块中显示行号
+    lineNos = false
+    # 代码复制时是否隐藏行号和结尾空格
+    lineNumbersInTable = false
+
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      # 允许在 Markdown 中直接使用 HTML（默认 false 则转义）
+      unsafe = true
+
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 4
+    ordered = false
+
+# ============================================================
+# 站点地图
+# ============================================================
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+
+# ============================================================
+# 主题由 git submodule 管理，无需 Hugo Module 导入
+# ============================================================
