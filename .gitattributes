@@ -33,6 +33,3 @@
 *.ttf   binary
 *.eot   binary
 
-# Go 模块
-go.mod  text eol=lf
-go.sum  text eol=lf
