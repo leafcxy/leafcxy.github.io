@@ -54,6 +54,8 @@ dateFormat = "2006-01-02"
   ShowPostNavLinks = true
   # 是否显示阅读时长
   ShowReadingTime = true
+  # 是否显示文章字数
+  ShowWordCount = true
   # 是否显示分享按钮
   ShowShareButtons = false
   # 是否在归档页显示 RSS 按钮
