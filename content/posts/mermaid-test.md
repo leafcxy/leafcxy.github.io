@@ -96,3 +96,18 @@ stateDiagram-v2
 ---
 
 如果以上所有图表都能正常渲染，说明 Mermaid 功能配置正确。
+
+## 新方式：代码块语法（无需 shortcode）
+
+直接使用 `mermaid` 代码块，无需 shortcode 包裹：
+
+```mermaid
+pie title 编程语言分布
+    "C/C++" : 35
+    "C#" : 25
+    "Python" : 20
+    "JavaScript" : 15
+    "其他" : 5
+```
+
+如果这个饼图也能渲染，说明两种方式可以共存。
