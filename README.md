@@ -25,6 +25,27 @@ hugo new content posts/文章名.md
 
 新文章默认使用 TOML frontmatter（`+++`），且 `draft = true`。发布前需将 `draft` 改为 `false`。
 
+## 更新 PaperMod 主题
+
+PaperMod 作为 git 子模块管理，不直接修改 `themes/PaperMod/` 中的文件。
+
+```bash
+# 更新到上游最新版
+cd themes/PaperMod
+git fetch origin
+git merge origin/master
+cd ../..
+
+# 或一条命令
+git submodule update --remote themes/PaperMod
+
+# 更新后提交子模块引用
+git add themes/PaperMod
+git commit -m "更新 PaperMod 主题子模块"
+```
+
+> 更新后建议 `hugo server -D` 验证站点正常，大版本更新可能有破坏性变更。
+
 ## 目录结构
 
 ```
