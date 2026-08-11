@@ -1,6 +1,6 @@
 +++
 date = '2026-08-11T10:56:00+08:00'
-draft = true
+draft = false
 title = 'Mermaid 图表测试'
 tags = ['Mermaid', '测试']
 +++
