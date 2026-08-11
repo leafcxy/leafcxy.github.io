@@ -55,7 +55,7 @@ dateFormat = "2006-01-02"
   # 是否显示阅读时长
   ShowReadingTime = true
   # 是否显示分享按钮
-  ShowShareButtons = true
+  ShowShareButtons = false
   # 是否在归档页显示 RSS 按钮
   ShowRssButtonInSectionTermList = true
   # 归档页是否显示所有页面
@@ -106,10 +106,10 @@ dateFormat = "2006-01-02"
 # 默认模式：显示文章列表（无需额外配置）
 
 # 方案一：Home-Info 模式（显示一段简介 + 社交链接）
-# [params.homeInfoParams]
-#   Title = "Hi there 👋"
-#   Content = "欢迎来到我的博客，这里记录了我的技术探索与生活思考。"
-#   AlignSocialIconsTo = "center"
+[params.homeInfoParams]
+  Title = "Hi there 👋"
+  Content = "欢迎来到我的博客，这里记录了我的技术探索与生活思考。"
+  AlignSocialIconsTo = "center"
 
 # 方案二：Profile 模式（个人名片风格）
 # [params.profileMode]
@@ -134,12 +134,12 @@ dateFormat = "2006-01-02"
 # [[params.socialIcons]]
 #   name = "twitter"
 #   url = "https://twitter.com/yourname"
-# [[params.socialIcons]]
-#   name = "email"
-#   url = "mailto:your@email.com"
-# [[params.socialIcons]]
-#   name = "rss"
-#   url = "/index.xml"
+[[params.socialIcons]]
+  name = "email"
+  url = "mailto:cxy1337@gmail.com"
+[[params.socialIcons]]
+  name = "rss"
+  url = "/index.xml"
 
 # ============================================================
 # 导航菜单
