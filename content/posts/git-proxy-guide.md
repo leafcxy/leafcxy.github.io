@@ -13,14 +13,14 @@ tags = ['git', 'proxy', 'network']
 
 访问 GitHub、GitLab 等平台时，有时会遇到 `git clone` 速度极慢甚至超时的情况。尤其是在国内网络环境下，给 Git 配置代理几乎是必备技能。
 
-{{< mermaid >}}
+```mermaid
 flowchart LR
     A[你的电脑] --> B{需要代理？}
     B -->|直连通畅| C[直接连接 Git 服务器]
     B -->|速度慢/超时| D[代理服务器]
     D --> E[Git 服务器<br/>github.com<br/>gitlab.com]
     C --> E
-{{< /mermaid >}}
+```
 
 ## 配置方式总览
 
@@ -33,7 +33,7 @@ Git 提供多种配置代理的途径，优先级从高到低：
 | `git config --global` | 写入 `~/.gitconfig` | 当前用户 |
 | 环境变量 | Shell 会话级 | 当前终端 |
 
-{{< mermaid >}}
+```mermaid
 graph TD
     A[Git 发起网络请求] --> B{有 -c 参数？}
     B -->|是| F[使用 -c 指定的代理]
@@ -44,7 +44,7 @@ graph TD
     D -->|否| E{有环境变量？}
     E -->|是| I[使用环境变量代理]
     E -->|否| J[直连]
-{{< /mermaid >}}
+```
 
 ## 一、HTTP/HTTPS 代理
 
@@ -90,7 +90,7 @@ git config --global http.https://github.com.proxy http://127.0.0.1:7890
 git config --global --unset http.https://github.com.proxy
 ```
 
-{{< mermaid >}}
+```mermaid
 flowchart LR
     subgraph 全局模式
         GA[所有 HTTPS 请求] -->|http.proxy| P1[代理 127.0.0.1:7890]
@@ -99,7 +99,7 @@ flowchart LR
         GH[github.com] -->|http.https://github.com.proxy| P2[代理 127.0.0.1:7890]
         GL[gitlab.company.com] --> D[直连]
     end
-{{< /mermaid >}}
+```
 
 ## 二、SOCKS5 代理
 
@@ -148,7 +148,7 @@ Host github.com
     # ProxyCommand connect -S 127.0.0.1:7891 %h %p
 ```
 
-{{< mermaid >}}
+```mermaid
 sequenceDiagram
     participant U as 你的电脑
     participant P as SOCKS5 代理<br/>127.0.0.1:7891
@@ -160,7 +160,7 @@ sequenceDiagram
     G-->>P: SSH 握手响应
     P-->>U: 返回 SSH 连接
     Note over U,G: Git 数据通过 SSH 隧道安全传输
-{{< /mermaid >}}
+```
 
 ## 四、环境变量方式
 
@@ -266,7 +266,7 @@ GIT_TRACE=1 GIT_CURL_VERBOSE=1 git clone https://github.com/user/repo.git
 
 ## 总结
 
-{{< mermaid >}}
+```mermaid
 graph LR
     Q[需要 clone/push] --> R{什么协议？}
     R -->|HTTPS| S{需要范围？}
@@ -277,7 +277,7 @@ graph LR
     R -->|SSH| W{需要范围？}
     W -->|Git 2.44+| X["core.gitProxy"]
     W -->|通用| Y["~/.ssh/config<br/>ProxyCommand"]
-{{< /mermaid >}}
+```
 
 | 场景 | 推荐方案 |
 |------|----------|

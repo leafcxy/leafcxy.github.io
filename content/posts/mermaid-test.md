@@ -11,7 +11,7 @@ tags = ['Mermaid', '测试']
 
 ## 流程图 (Flowchart)
 
-{{< mermaid >}}
+```mermaid
 graph TD
     A[开始] --> B{是否准备好？}
     B -->|是| C[执行任务]
@@ -21,11 +21,11 @@ graph TD
     E -->|通过| F[完成]
     E -->|失败| G[修复问题]
     G --> C
-{{< /mermaid >}}
+```
 
 ## 时序图 (Sequence Diagram)
 
-{{< mermaid >}}
+```mermaid
 sequenceDiagram
     participant 客户端
     participant 服务端
@@ -35,11 +35,11 @@ sequenceDiagram
     服务端->>数据库: SELECT * FROM posts
     数据库-->>服务端: 返回数据
     服务端-->>客户端: JSON 响应
-{{< /mermaid >}}
+```
 
 ## 类图 (Class Diagram)
 
-{{< mermaid >}}
+```mermaid
 classDiagram
     class Blog {
         +String title
@@ -61,11 +61,11 @@ classDiagram
     }
     Blog "1" --> "*" Post : 包含
     Post "*" --> "1" Author : 属于
-{{< /mermaid >}}
+```
 
 ## 甘特图 (Gantt Chart)
 
-{{< mermaid >}}
+```mermaid
 gantt
     title 博客搭建计划
     dateFormat  YYYY-MM-DD
@@ -79,11 +79,11 @@ gantt
     Mermaid 测试             :active,  content3, 2026-08-11, 1d
     section 未来计划
     持续写作                 :          future1, 2026-08-12, 30d
-{{< /mermaid >}}
+```
 
 ## 状态图 (State Diagram)
 
-{{< mermaid >}}
+```mermaid
 stateDiagram-v2
     [*] --> 草稿
     草稿 --> 审核中 : 提交审核
@@ -91,7 +91,7 @@ stateDiagram-v2
     审核中 --> 草稿 : 退回修改
     已发布 --> 已归档 : 归档
     已归档 --> [*]
-{{< /mermaid >}}
+```
 
 ---
 
