@@ -8,6 +8,8 @@ locale = 'zh-cn'
 defaultContentLanguage = 'zh'
 title = "LeafCxy's Blog"
 theme = 'PaperMod'
+# CJK 语言：让 WordCount / ReadingTime 正确统计中文字数（否则中文按空格分词，字数严重偏低）
+hasCJKLanguage = true
 
 # 每页显示文章数
 paginate = 10
