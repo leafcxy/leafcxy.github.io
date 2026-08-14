@@ -64,7 +64,7 @@ tags = ['regex']
 
 下面是Regester运行时的截图：
 
-![](/images/2025/2025-13.png)
+![](regester.png)
 
 ## 元字符
 

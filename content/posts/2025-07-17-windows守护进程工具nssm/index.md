@@ -27,12 +27,12 @@ nssm是一个服务封装程序，它可以将普通exe程序封装成服务，�
 
 ### 解压压缩包，根据系统位数选择64或32位程序
 
-![](/images/2025/2025-1.png)
+![](select-version.png)
 
 ### 打开命令行，运行nssm程序
 
 管理员权限打开命令行工具，切换到nssm.exe所在路径，运行 nssm install，打开程序配置界面
-![](/images/2025/2025-2.png)
+![](install-config.png)
 
 配置项说明：  
 Path：运行应用程序的程序  
@@ -76,8 +76,8 @@ Service name：webapp8888
 ```
 最后点击install service 完成windows服务安装，在windows服务列表就能看到创建的服务了。
 
-![](/images/2025/2025-3.png)
-![](/images/2025/2025-4.png)
+![](install-service-config.png)
+![](install-service.png)
 
 ### 管理服务
 
@@ -87,8 +87,8 @@ Service name：webapp8888
 D:\nssm-2.24\win64>nssm start webapp8888
 webapp8888: START: 操作成功完成。
 ```
-![](/images/2025/2025-5.png)
-![](/images/2025/2025-6.png)
+![](start-service.png)
+![](service-running.png)
 
 #### 关闭服务
 
@@ -96,7 +96,7 @@ webapp8888: START: 操作成功完成。
 D:\nssm-2.24\win64>nssm stop webapp8888
 webapp8888: STOP: 操作成功完成。
 ```
-![](/images/2025/2025-7.png)
+![](stop-service.png)
 
 #### 重启服务
 
@@ -119,7 +119,7 @@ webapp8888: START: 操作成功完成。
 ```sh
 D:\nssm-2.24\win64>nssm edit webapp8888
 ```
-![](/images/2025/2025-8.png)
+![](edit-service.png)
 
 #### 删除服务
 
@@ -129,6 +129,6 @@ D:\nssm-2.24\win64>nssm edit webapp8888
 D:\nssm-2.24\win64>nssm remove webapp8888
 Service "webapp8888" removed successfully!
 ```
-![](/images/2025/2025-9.png)
+![](remove-service.png)
 
 > https://blog.csdn.net/liyou123456789/article/details/123094277
