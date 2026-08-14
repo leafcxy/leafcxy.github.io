@@ -22,3 +22,7 @@ Thumbs.db
 # 临时文件
 *.tmp
 *.log
+
+# ref 参考文件
+/ref/*
+!/ref/.gitkeep
