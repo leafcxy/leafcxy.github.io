@@ -25,6 +25,10 @@ description = "记录技术、生活与思考的个人博客"
 # ---- 日期格式 ----
 dateFormat = "2006-01-02"
 
+# ---- 永久链接（文章 URL 结构：/posts/年/月/slug/）----
+[permalinks]
+  posts = '/posts/:year/:month/:slug/'
+
 # ---- 输出格式（搜索需要 JSON 索引）----
 [outputs]
   home = ["HTML", "RSS", "JSON"]
