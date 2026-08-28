@@ -1,6 +1,6 @@
 +++
 title = 'Bootlin Elixir：阅读与检索 Linux 内核及开源项目源码的神器'
-date = '2026-08-28T08:45:00+08:00'
+date = '2026-08-28T08:35:00+08:00'
 slug = 'bootlin-elixir-cross-referencer'
 draft = false
 tags = ['linux', 'kernel', '开源工具', 'c', '嵌入式', '源码分析']
