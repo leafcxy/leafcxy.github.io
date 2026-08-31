@@ -68,6 +68,8 @@ dateFormat = "2006-01-02"
   ShowRssButtonInSectionTermList = true
   # 归档页是否显示所有页面
   ShowAllPagesInArchive = false
+  # 启用数学公式支持（KaTeX）
+  math = true
 
   # -- 内容主分区（告诉 Hugo 哪些 section 算文章）--
   mainSections = ["posts"]
@@ -200,6 +202,12 @@ dateFormat = "2006-01-02"
     [markup.goldmark.renderer]
       # 允许在 Markdown 中直接使用 HTML（默认 false 则转义）
       unsafe = true
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)'], ['$', '$']]
 
   [markup.tableOfContents]
     startLevel = 2

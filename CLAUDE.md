@@ -8,7 +8,7 @@
 
 - **站点语言**：中文（`zh-cn` / `defaultContentLanguage = 'zh'`）
 - **内容**：文章存放于 `content/posts/`，另有搜索页 `content/search.md` 和归档页 `content/archives.md`
-- **自定义功能**：Mermaid 图表支持（通过代码块渲染 hook 和 head 扩展）
+- **自定义功能**：Mermaid 图表支持、KaTeX 数学公式支持（行内 `$..$` 与块级 `$$..$$`）
 
 ## 常用命令
 
@@ -142,6 +142,7 @@ PaperMod 是一个快速、极简的 Hugo 主题，特性包括：
       ```
 
 - **条件加载 Mermaid CDN**：`layouts/_partials/extend_head.html`，仅在含 Mermaid 图表的页面加载 `mermaid@11` 库
+- **数学公式支持（KaTeX）**：`hugo.toml` 中配置了 Goldmark Passthrough 扩展（支持行内 `$ ... $` / `\( ... \)` 与块级 `$$ ... $$` / `\[ ... \]`），并通过 `layouts/_partials/extend_head.html` 自动加载 KaTeX CDN 进行客户端公式渲染。
 
 ### 部署
 
