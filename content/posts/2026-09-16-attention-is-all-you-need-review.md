@@ -100,20 +100,23 @@ $$\mathcal{O}(N^2)$$
 
 ## 四、“从来如此，便对么？”——Transformer 的黄昏与突围
 
-哪怕单从纯粹的技术逻辑来看，Transformer 统治了近十年后，其固有的局限也已经暴露无遗：
+哪怕单从纯粹的技术与工程逻辑来看，自 2017 年问世至今近十年间，随着规模化（Scaling）撞上物理与数据之墙，Transformer 架构固有的局限也已暴露无遗：
 
 ```mermaid
-mindmap
-  root((Transformer 的固有天花板))
-    自回归概率本质
-      Next-Token Prediction 缺乏真实世界模型
-      不可消除的随机幻觉 (Hallucination)
-    计算复杂度瓶颈
-      长文本 O(N²) 内存与带宽墙
-      KV Cache 随并发与长度无限膨胀
-    数据枯竭
-      公网高质量人类语料见顶
-      合成数据陷入模型崩溃 (Model Collapse)
+graph TD
+    Root["Transformer 架构的固有局限"]
+    
+    Root --> B1["自回归概率本质"]
+    B1 --> B1_1["Next-Token Prediction 缺乏物理世界模型与因果推理"]
+    B1 --> B1_2["不可消除的随机幻觉（Hallucination）"]
+    
+    Root --> B2["计算复杂度瓶颈"]
+    B2 --> B2_1["长文本 O(N²) 二次方内存与带宽墙"]
+    B2 --> B2_2["KV Cache 随并发与序列长度线性膨胀"]
+    
+    Root --> B3["数据与边际效益"]
+    B3 --> B3_1["公网高质量人类原始语料见顶"]
+    B3 --> B3_2["合成数据反噬与模型崩溃（Model Collapse）"]
 ```
 
 1. **概率的鹦鹉，没有真正的常识与因果**  
