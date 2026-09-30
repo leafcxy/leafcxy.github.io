@@ -388,28 +388,28 @@ flowchart TD
 网卡收到物理比特流后，自底向上展开了一场严密的“接力赛”：
 
 ```mermaid
-graph TD
-    Frame[收到以太网帧] --> CheckCRC{FCS 校验是否正确？}
-    CheckCRC -->|错误| Drop1[静默丢弃]
-    CheckCRC -->|正确| CheckMAC{目的 MAC 是本机或广播？}
-    CheckMAC -->|否| Drop2[丢弃]
-    CheckMAC -->|是| EtherTypeCheck{检查 EtherType 字段}
+flowchart TD
+    Frame["收到以太网帧"] --> CheckCRC{"FCS 校验是否正确？"}
+    CheckCRC -->|"错误"| Drop1["静默丢弃"]
+    CheckCRC -->|"正确"| CheckMAC{"目的 MAC 是本机或广播？"}
+    CheckMAC -->|"否"| Drop2["丢弃"]
+    CheckMAC -->|"是"| EtherTypeCheck{"检查 EtherType 字段"}
 
-    EtherTypeCheck -->|0x0806| ToARP[交由内核 ARP 模块处理]
-    EtherTypeCheck -->|0x0800| ToIP[交由内核 IP 模块处理]
+    EtherTypeCheck -->|"0x0806"| ToARP["交由内核 ARP 模块处理"]
+    EtherTypeCheck -->|"0x0800"| ToIP["交由内核 IP 模块处理"]
 
-    ToIP --> CheckIP{目的 IP 是本机？TTL > 0？}
-    CheckIP -->|否| RouteOrDrop[路由转发或丢弃]
-    CheckIP -->|是| CheckProto{检查 IP 报头 Protocol 字段}
+    ToIP --> CheckIP{"目的 IP 是本机且 TTL 大于 0？"}
+    CheckIP -->|"否"| RouteOrDrop["路由转发或丢弃"]
+    CheckIP -->|"是"| CheckProto{"检查 IP 报头 Protocol 字段"}
 
-    CheckProto -->|1| ToICMP[送交 ICMP 模块 (如 ping 应答)]
-    CheckProto -->|89| ToOSPF[送交 OSPF 守护进程]
-    CheckProto -->|6| ToTCP[送交 TCP 状态机]
-    CheckProto -->|17| ToUDP[送交 UDP 模块]
+    CheckProto -->|"1"| ToICMP["送交 ICMP 模块（如 ping 应答）"]
+    CheckProto -->|"89"| ToOSPF["送交 OSPF 守护进程"]
+    CheckProto -->|"6"| ToTCP["送交 TCP 状态机"]
+    CheckProto -->|"17"| ToUDP["送交 UDP 模块"]
 
-    ToTCP --> MatchPort{查找对应 Listening / Established Socket}
-    MatchPort -->|找到匹配端口| WakeProcess[唤醒用户态进程 (epoll_wait 返回)]
-    MatchPort -->|未找到| SendRST[向源端回送 TCP RST 报文]
+    ToTCP --> MatchPort{"查找对应 Listening / Established Socket"}
+    MatchPort -->|"找到匹配端口"| WakeProcess["唤醒用户态进程（epoll_wait 返回）"]
+    MatchPort -->|"未找到"| SendRST["向源端回送 TCP RST 报文"]
 ```
 
 每一个层次都在自己的首部明确指示了**下一层应由谁来接盘**：
