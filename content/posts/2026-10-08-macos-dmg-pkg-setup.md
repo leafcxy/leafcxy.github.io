@@ -76,7 +76,7 @@ graph TD
     B --> D[preinstall 脚本]
     B --> E[复制文件到目标目录]
     B --> F[postinstall 脚本]
-    E --> G[/usr/local /Library 等系统目录]
+    E --> G["/usr/local /Library 等系统目录"]
     F --> H[注册服务 / 写配置 / 设权限]
 ```
 
