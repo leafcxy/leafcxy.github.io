@@ -40,22 +40,22 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    subgraph 架构一: 直连网络 (Direct)
-        C1[客户端] -->|公网跨海长链路 / 晚高峰丢包高| S1[境外落地 VPS]
-        S1 --> W1[目标网站]
+    subgraph sg_direct ["架构一：直连网络 Direct"]
+        C1["客户端"] -->|"公网跨海链路 - 晚高峰丢包较高"| S1["境外落地 VPS"]
+        S1 --> W1["目标网站"]
     end
 
-    subgraph 架构二: BGP 国内中转 (Relay Transit)
-        C2[客户端] -->|就近接入| BGP[国内多线 BGP 服务器]
-        BGP -->|优化公网隧道中继| S2[境外落地 VPS]
-        S2 --> W2[目标网站]
+    subgraph sg_bgp ["架构二：BGP 国内中转 Relay Transit"]
+        C2["客户端"] -->|"国内多线就近接入"| BGP["国内多线 BGP 服务器"]
+        BGP -->|"优化公网隧道中继"| S2["境外落地 VPS"]
+        S2 --> W2["目标网站"]
     end
 
-    subgraph 架构三: IPLC / IEPL 专线 (Private Leased Line)
-        C3[客户端] -->|内网边缘接入| Edge[国内专线入口]
-        Edge ===|物理光纤内网专线 / 零丢包不过公网| Border[境外专线出口]
-        Border --> S3[境外落地集群]
-        S3 --> W3[目标网站]
+    subgraph sg_iplc ["架构三：IPLC 与 IEPL 专线"]
+        C3["客户端"] -->|"内网边缘接入"| Edge["国内专线入口"]
+        Edge -->|"物理光纤内网专线 - 零丢包不过公网"| Border["境外专线出口"]
+        Border --> S3["境外落地集群"]
+        S3 --> W3["目标网站"]
     end
 ```
 
@@ -130,34 +130,34 @@ flowchart LR
 
 ```mermaid
 graph TD
-    subgraph 用户层
-        Client[客户端 FlClash / Sing-box / Surge]
+    subgraph sg_client ["客户端应用层"]
+        Client["客户端: FlClash / Sing-box / Surge"]
     end
 
-    subgraph 前端网关层
-        WebUI[前端面板 SSPanel / V2board / Xboard]
-        SubAPI[订阅转换与下发 API Subconverter]
-        Payment[自动化支付与计费回调]
+    subgraph sg_front ["前端与订阅网关层"]
+        WebUI["前端面板: SSPanel / V2board / Xboard"]
+        SubAPI["订阅转换与下发 API: Subconverter"]
+        Payment["自动化支付与计费系统"]
     end
 
-    subgraph 核心控制与调度
-        Controller[核心调度集群]
-        DB[(用户额度/节点配置数据库)]
-        Monitor[Prometheus + Grafana 链路拨测与负载监控]
+    subgraph sg_ctrl ["核心控制与调度系统"]
+        Controller["核心调度控制器"]
+        DB[("用户额度与节点配置数据库")]
+        Monitor["Prometheus 与 Grafana 监控拨测"]
     end
 
-    subgraph 节点数据平面 (Data Plane)
-        RelayNode[国内 BGP 中转节点]
-        EgressCluster[境外落地机集群 (Xray / Sing-box Core)]
+    subgraph sg_data ["节点数据平面 Data Plane"]
+        RelayNode["国内多线 BGP 中转节点"]
+        EgressCluster["境外落地集群: Xray 与 Sing-box"]
     end
 
-    Client -->|1. 拉取订阅配置| SubAPI
+    Client -->|"1. 拉取订阅配置"| SubAPI
     SubAPI --> WebUI
     WebUI --- DB
-    Controller -->|动态下发路由规则| RelayNode
-    Controller -->|分发鉴权 Token| EgressCluster
-    RelayNode ==>|专线/隧道传输| EgressCluster
-    Monitor -.->|探测节点健康度 & 自动摘除死节点| Controller
+    Controller -->|"动态下发路由规则"| RelayNode
+    Controller -->|"分发鉴权 Token"| EgressCluster
+    RelayNode -->|"专线与加密隧道传输"| EgressCluster
+    Monitor -.->|"链路拨测与故障剔除"| Controller
 ```
 
 - **面板前端系统**：目前行业主流开源框架包括 `SSPanel-UIM`、`V2board`、`Xboard` 等，负责用户注册、套餐订阅、自动化账单、工单支持与订阅下发。
@@ -213,14 +213,14 @@ graph TD
 
 ```mermaid
 flowchart TD
-    Req[客户端发起访问请求] --> DNS{Fake-IP / 域名嗅探}
-    DNS --> Rules{命中分流规则？}
+    Req["客户端发起访问请求"] --> DNS{"Fake-IP 域名嗅探"}
+    DNS --> Rules{"命中分流规则？"}
     
-    Rules -->|国内域名 / IP (GEOIP, CN)| Direct[DIRECT: 直连直通, 满血低延迟]
-    Rules -->|AI 平台 (OpenAI / Claude)| GroupAI[策略组: 限制高纯净度美日节点]
-    Rules -->|流媒体 (Netflix / YouTube)| GroupMedia[策略组: 选择大带宽解锁节点]
-    Rules -->|局域网 / 私有地址| Private[DIRECT: 本地局域网]
-    Rules -->|其余未知境外流量| Proxy[MATCH: 自动优选或故障转移节点]
+    Rules -->|"国内域名与 IP (GEOIP, CN)"| Direct["DIRECT: 直连直通满血低延迟"]
+    Rules -->|"AI 平台 (OpenAI / Claude)"| GroupAI["策略组: 限制高纯净美日节点"]
+    Rules -->|"流媒体 (Netflix / YouTube)"| GroupMedia["策略组: 选择大带宽解锁节点"]
+    Rules -->|"局域网与私有地址"| Private["DIRECT: 本地局域网直连"]
+    Rules -->|"其余未知境外流量"| Proxy["MATCH: 自动优选或故障转移节点"]
 ```
 
 1. **分流策略划分**：

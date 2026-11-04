@@ -22,23 +22,24 @@ tags = ['vpn', 'wireguard', 'network', 'linux', 'security']
 
 ```mermaid
 flowchart LR
-    subgraph 节点 A: 居家/移动办公
-        A_App[用户程序 / 终端] --> A_TUN[虚拟网卡 tun0<br/>10.0.0.2]
-        A_TUN --> A_VPN[VPN 守护进程]
-        A_VPN --> A_NIC[物理网卡 eth0<br/>私网/公网 IP]
+    subgraph sg_node_a ["节点 A：居家办公终端"]
+        A_App["用户程序与终端"] --> A_TUN["虚拟网卡 tun0<br/>10.0.0.2"]
+        A_TUN --> A_VPN["VPN 守护进程"]
+        A_VPN --> A_NIC["物理网卡 eth0<br/>私网或公网 IP"]
     end
 
-    subgraph 公共互联网 (Internet)
-        Tunnel["🔐 加密隧道传输 (Tunneling)<br/>UDP / TCP 报文包裹原始数据"]
+    subgraph sg_internet ["公共互联网 Internet"]
+        Tunnel["加密隧道传输 Tunneling<br/>UDP 或 TCP 报文封装原始数据"]
     end
 
-    subgraph 节点 B: 公司/私有云网关
-        B_NIC[物理网卡 eth0<br/>公网 IP] --> B_VPN[VPN 守护进程]
-        B_VPN --> B_TUN[虚拟网卡 tun0<br/>10.0.0.1]
-        B_TUN --> B_LAN[内网服务器/资源<br/>192.168.1.0/24]
+    subgraph sg_node_b ["节点 B：云端企业网关"]
+        B_NIC["物理网卡 eth0<br/>公网 IP"] --> B_VPN["VPN 守护进程"]
+        B_VPN --> B_TUN["虚拟网卡 tun0<br/>10.0.0.1"]
+        B_TUN --> B_LAN["内网服务资源<br/>192.168.1.0/24"]
     end
 
-    A_NIC <--> Tunnel <--> B_NIC
+    A_NIC <--> Tunnel
+    Tunnel <--> B_NIC
 ```
 
 ### 1.1 VPN 的三大核心支柱
@@ -122,14 +123,14 @@ WireGuard 彻底取消了协商逻辑，直接钦定当前密码学界公认最�
 
 ```mermaid
 graph TD
-    subgraph WireGuard 虚拟网卡 wg0
-        A[入站数据包 Destination IP] --> B{查表: Cryptokey Routing}
-        B -->|匹配 10.0.0.2| PeerA["Peer A<br/>公钥: PubKey_Alice<br/>AllowedIPs: 10.0.0.2/32"]
-        B -->|匹配 10.0.0.3| PeerB["Peer B<br/>公钥: PubKey_Bob<br/>AllowedIPs: 10.0.0.3/32"]
-        PeerA --> EncryptA[使用 PubKey_Alice 加密]
-        PeerB --> EncryptB[使用 PubKey_Bob 加密]
-        EncryptA --> SendA[发往 Endpoint_Alice]
-        EncryptB --> SendB[发往 Endpoint_Bob]
+    subgraph sg_wg ["WireGuard 虚拟网卡 wg0"]
+        A["入站数据包 Destination IP"] --> B{"查表: Cryptokey Routing"}
+        B -->|"匹配 10.0.0.2"| PeerA["Peer A<br/>公钥: PubKey_Alice<br/>AllowedIPs: 10.0.0.2/32"]
+        B -->|"匹配 10.0.0.3"| PeerB["Peer B<br/>公钥: PubKey_Bob<br/>AllowedIPs: 10.0.0.3/32"]
+        PeerA --> EncryptA["使用 PubKey_Alice 加密"]
+        PeerB --> EncryptB["使用 PubKey_Bob 加密"]
+        EncryptA --> SendA["发往 Endpoint_Alice"]
+        EncryptB --> SendB["发往 Endpoint_Bob"]
     end
 ```
 
@@ -289,14 +290,14 @@ peer: Server_PublicKey_Here...
 
 ```mermaid
 graph TD
-    subgraph 全局网络虚拟化 (Layer 3)
-        VPN["VPN (WireGuard / OpenVPN)<br/>• 虚拟网卡 (tun0)<br/>• 接管整个 OS 网络栈<br/>• 任意 IP 协议 (TCP/UDP/ICMP)"]
+    subgraph sg_l3 ["网络层虚拟化 Layer 3"]
+        VPN["VPN: WireGuard 或 OpenVPN<br/>虚拟网卡 tun0<br/>接管操作系统网络栈<br/>支持任意 IP 协议"]
     end
-    subgraph 流量中继与路由 (Layer 4/7)
-        Proxy["代理 (SOCKS5 / HTTP Proxy)<br/>• 针对应用进程级别<br/>• 需软件显式配置代理端口<br/>• 代发客户端请求"]
+    subgraph sg_l4 ["流量中继与路由 Layer 4 与 7"]
+        Proxy["代理: SOCKS5 或 HTTP Proxy<br/>针对应用进程级别<br/>需软件显式配置端口<br/>代发客户端请求"]
     end
-    subgraph 反向端口暴露 (Layer 4/7)
-        NAT_T["内网穿透 (frp / Cloudflare Tunnel)<br/>• 反向代理中继<br/>• 将内网特定端口映射至公网<br/>• 外部可直接发起单向访问"]
+    subgraph sg_nat ["反向端口暴露 Layer 4 与 7"]
+        NAT_T["内网穿透: frp 或 Cloudflare Tunnel<br/>反向代理中继<br/>将内网特定端口映射至公网<br/>外部可直接发起单向访问"]
     end
 ```
 

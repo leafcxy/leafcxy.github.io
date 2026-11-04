@@ -24,20 +24,20 @@ tags = ['frp', 'network', 'linux', 'tools']
 
 ```mermaid
 flowchart LR
-    subgraph 局域网内网
+    subgraph sg_lan ["局域网内网"]
         Client["内网机器<br/>192.168.1.100:8080"]
     end
-    subgraph 边缘网关
-        Router["NAT 路由器 / 光猫<br/>公网: 203.0.113.1"]
+    subgraph sg_gw ["边缘网关"]
+        Router["NAT 路由器与光猫<br/>公网: 203.0.113.1"]
     end
-    subgraph 外部互联网
+    subgraph sg_wan ["外部互联网"]
         Server["公网服务器<br/>198.51.100.2:443"]
     end
 
-    Client -->|源: 192.168.1.100:8080| Router
-    Router -->|SNAT 改写源: 203.0.113.1:54321| Server
-    Server -->|响应回包: 203.0.113.1:54321| Router
-    Router -->|查映射表还原发往: 192.168.1.100:8080| Client
+    Client -->|"源: 192.168.1.100:8080"| Router
+    Router -->|"SNAT 改写源: 203.0.113.1:54321"| Server
+    Server -->|"响应回包: 203.0.113.1:54321"| Router
+    Router -->|"查表还原: 192.168.1.100:8080"| Client
 ```
 
 ### 1.2 外部发起连接的困境
@@ -65,18 +65,18 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    subgraph 路线一: 中继反向代理 (Relay Proxy)
-        C1[内网客户端 Client] -->|1. 主动外联建立长连接| VPS1[公网中继服务器 VPS]
-        User1[外网用户] -->|2. 请求公网端口| VPS1
-        VPS1 -->|3. 转发流量至长连接通道| C1
+    subgraph sg_relay ["路线一：中继反向代理 Relay Proxy"]
+        C1["内网客户端 Client"] -->|"1. 主动外联建立长连接"| VPS1["公网中继服务器 VPS"]
+        User1["外网用户"] -->|"2. 请求公网端口"| VPS1
+        VPS1 -->|"3. 转发流量至长连接通道"| C1
     end
 
-    subgraph 路线二: P2P 打洞直连 (Hole Punching)
-        C2[内网客户端 A] -->|1. 协商注册| STUN[STUN / 协调服务器]
-        C3[内网客户端 B] -->|2. 协商注册| STUN
-        STUN -->|3. 交换双方外网映射 IP/端口| C2
-        STUN -.->|3. 交换双方外网映射 IP/端口| C3
-        C2 <-->|4. 互相发包刺穿 NAT 直连| C3
+    subgraph sg_p2p ["路线二：P2P 打洞直连 Hole Punching"]
+        C2["内网客户端 A"] -->|"1. 协商注册"| STUN["STUN 协调服务器"]
+        C3["内网客户端 B"] -->|"2. 协商注册"| STUN
+        STUN -->|"3. 交换双方外网映射信息"| C2
+        STUN -.->|"3. 交换双方外网映射信息"| C3
+        C2 <-->|"4. 互相发包穿透 NAT 直连"| C3
     end
 ```
 
@@ -131,20 +131,20 @@ flowchart TD
 
 ```mermaid
 graph LR
-    subgraph 公网云服务器
+    subgraph sg_vps ["公网云服务器"]
         FRPS["frps 服务端<br/>公网 IP: 1.2.3.4<br/>监听端口: 7000"]
         VHOST["HTTP 代理端口: 8080<br/>SSH 映射端口: 6000"]
     end
 
-    subgraph 居家局域网
-        FRPC["frpc 客户端<br/>主动与 1.2.3.4:7000 建联"]
+    subgraph sg_home ["居家局域网"]
+        FRPC["frpc 客户端<br/>主动外联 1.2.3.4:7000"]
         LocalSSH["本地 SSH 服务<br/>127.0.0.1:22"]
         LocalWeb["本地 Web 服务<br/>127.0.0.1:3000"]
     end
 
-    User[外网用户/开发者] -->|访问 1.2.3.4:6000| VHOST
+    User["外网用户与开发者"] -->|"访问 1.2.3.4:6000"| VHOST
     VHOST -.-> FRPS
-    FRPS ===|加密隧道| FRPC
+    FRPS ==>|"加密隧道"| FRPC
     FRPC --> LocalSSH
     FRPC --> LocalWeb
 ```
@@ -290,14 +290,14 @@ sequenceDiagram
     participant Target as 家中被控端机器 (frpc target)
 
     Note over Target,VPS: 1. 注册 STCP 隧道，携带 secretKey，VPS 上不监听外部端口
-    Target->>VPS: 建立 STCP 安全隧道 (name="secret-ssh")
+    Target->>VPS: 建立 STCP 安全隧道 (name=secret-ssh)
     
     Note over Visitor,VPS: 2. 访问者启动 visitor 模式连接 VPS
-    Visitor->>VPS: 请求绑定 "secret-ssh"，验证 secretKey
+    Visitor->>VPS: 请求绑定 secret-ssh，验证 secretKey
     VPS-->>Visitor: 鉴权通过，桥接端对端通道
     
     Note over Visitor,Target: 3. 访问者本地监听 127.0.0.1:2222
-    Visitor->>Visitor: ssh user@127.0.0.1:2222
+    Visitor->>Visitor: 连接本地 127.0.0.1:2222
     Visitor->>Target: 加密数据流直通
 ```
 
