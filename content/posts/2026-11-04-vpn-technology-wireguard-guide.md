@@ -38,7 +38,7 @@ flowchart LR
         B_TUN --> B_LAN[内网服务器/资源<br/>192.168.1.0/24]
     end
 
-    A_NIC === Tunnel === B_NIC
+    A_NIC <--> Tunnel <--> B_NIC
 ```
 
 ### 1.1 VPN 的三大核心支柱
@@ -83,13 +83,10 @@ sequenceDiagram
 几十年来，网络安全协议经历了多次重大变革与迭代淘汰：
 
 ```mermaid
-timeline
-    title VPN 协议技术演化简史
-    1990s : PPTP : 微软主导，明文认证脆弱，已淘汰
-    2000s : IPsec (IKEv1/v2) : 工业级高安全标准，配置晦涩繁重
-          : OpenVPN : 基于 OpenSSL，跨平台成熟灵活，用户态开销大
-    2010s : WireGuard (2016-2020) : Jason Donenfeld 发布，并入 Linux 5.6 主线内核
-    2020s+ : Mesh VPN (Tailscale / ZeroTier) : 基于 WireGuard 的全网状零配置虚拟局域网
+flowchart LR
+    P1["1990s: PPTP<br/>微软主导 / 已淘汰"] --> P2["2000s: IPsec / OpenVPN<br/>工业标准 / 配置繁重"]
+    P2 --> P3["2010s: WireGuard<br/>并入内核 / 现代密码学"]
+    P3 --> P4["2020s+: Mesh VPN<br/>Tailscale / 零配置网状网"]
 ```
 
 ### 2.1 协议深度对比
