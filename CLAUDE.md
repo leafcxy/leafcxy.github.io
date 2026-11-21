@@ -137,9 +137,19 @@ PaperMod 是一个快速、极简的 Hugo 主题，特性包括：
 - **Mermaid 图表代码块**：直接在 Markdown 中使用 `mermaid` 原生代码块（三反引号 + `mermaid` 语言标识），Hugo 通过 `layouts/_default/_markup/render-codeblock-mermaid.html` 渲染为 `<div class="mermaid">`，无需 shortcode：
 
       ```mermaid
-      graph TD
-          A[开始] --> B[结束]
+      flowchart TD
+          A["开始"] --> B["结束"]
       ```
+
+- **Mermaid v11 语法规范与避坑指南（必须严格遵守）**：
+  1. **subgraph 声明规范**：必须使用英文 ID，中文或带特殊符号的标题必须用方括号及英文双引号 `id ["标题"]`，**严禁省略 ID 直接裸写中文或特殊符号（如中文冒号 `：`、空格等）**：
+     - ✅ 正确：`subgraph sg_toxic ["病态循环：苦涩母体的毒素传导"]`
+     - ❌ 错误：`subgraph 病态循环：苦涩母体的毒素传导`（Mermaid 11 解析器会直接崩溃并提示 `Syntax error in text`）
+  2. **连线标签规范**：连线文本有中文、空格或标点符号时，必须使用英文双引号包裹：
+     - ✅ 正确：`A -->|"青年亚文化转译"| B`、`E -.->|"加剧受害感"| A`
+     - ❌ 错误：`A -->|青年亚文化转译| B`、`E -.->|加剧受害感| A`
+  3. **节点文字与换行**：节点文案一律使用 `NodeId["文案内容"]` 包裹，行内换行统一使用 `<br/>`，避免在方括号内未加引号直出括号、斜线等特殊符号。
+  4. **图表声明**：流向图优先使用现代的 `flowchart LR` / `flowchart TD`，尽量避免使用老旧的 `graph LR` / `graph TD`。
 
 - **条件加载 Mermaid CDN**：`layouts/_partials/extend_head.html`，仅在含 Mermaid 图表的页面加载 `mermaid@11` 库
 - **数学公式支持（KaTeX）**：`hugo.toml` 中配置了 Goldmark Passthrough 扩展（支持行内 `$ ... $` / `\( ... \)` 与块级 `$$ ... $$` / `\[ ... \]`），并通过 `layouts/_partials/extend_head.html` 自动加载 KaTeX CDN 进行客户端公式渲染。
